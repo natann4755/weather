@@ -1,4 +1,4 @@
-package com.example.weather;
+package com.example.weather.Retrofit;
 
 
 import com.example.weather.modul.Contry;
@@ -13,5 +13,7 @@ public interface ApiInterpafe {
     @GET("region/{reg}")
     Call<Contry[]> getContryRegion (@Path("reg")String region);
 
+    @GET("v2/")
+    Call<Contry[]> getAllContry();
 
 }

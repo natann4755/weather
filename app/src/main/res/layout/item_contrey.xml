@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="119dp"
+    >
+
+    <TextView
+        android:id="@+id/IContrey_contreyName_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="contrey"
+        android:textStyle="bold"
+        android:textSize="43sp"
+        android:layout_gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/IContrey_ring_TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ring"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimary"/>
+
+
+</LinearLayout>
