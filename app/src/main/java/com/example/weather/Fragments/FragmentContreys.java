@@ -75,7 +75,7 @@ public class FragmentContreys extends Fragment {
     private void initRV(View v) {
         mRecyclerView = v.findViewById(R.id.AM_RecyclerView_contrey_RV);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mContreyAdapter = new contreyAdapter(Contreys);
+        mContreyAdapter = new contreyAdapter(Contreys,getActivity());
         mRecyclerView.setAdapter(mContreyAdapter);
 
     }

@@ -31,7 +31,10 @@ public class ActivityAllContreys extends AppCompatActivity implements FragmentsR
     private ArrayList<Contry> contreyAsia=new ArrayList<>();
     private ArrayList<Contry> contreyAmericas=new ArrayList<>();
     private ArrayList<Contry> contreyEurope=new ArrayList<>();
-    private ArrayList<Contry> otherContrey=new ArrayList<>();
+    private ArrayList<Contry> contreyOceania=new ArrayList<>();
+    private ArrayList<Contry> contreyAntartica=new ArrayList<>();
+    private ArrayList<Contry> Isolatedislands=new ArrayList<>();
+
 
 
     @Override
@@ -77,12 +80,16 @@ public class ActivityAllContreys extends AppCompatActivity implements FragmentsR
     private void initAreeyRegion() {
 
         sumConyrey();
-        myArreyRegion.add(new Region("All Contrey",AllContrey.size()));
-        myArreyRegion.add(new Region("Africa",contreyAfrica.size()));
-        myArreyRegion.add(new Region("Asia",contreyAsia.size()));
-        myArreyRegion.add(new Region("Americas",contreyAmericas.size()));
-        myArreyRegion.add(new Region("Europe",contreyEurope.size()));
-        myArreyRegion.add(new Region("Other",otherContrey.size()));
+        myArreyRegion.add(new Region("All Contrey",AllContrey.size(),
+                "https://www.rm-style.com/wp-content/uploads/2018/06/colore-nel-mondo.jpg"));
+        myArreyRegion.add(new Region("Africa",contreyAfrica.size(),
+                "https://thumbs.dreamstime.com/b/multicolored-political-map-africa-continent-national-borders-country-name-labels-white-background-vector-94885761.jpg"));
+        myArreyRegion.add(new Region("Asia",contreyAsia.size(),"https://www.ibu.edu.ba/assets/userfiles/ires/south_asia.jpg"));
+        myArreyRegion.add(new Region("Americas",contreyAmericas.size(),"https://as2.ftcdn.net/jpg/01/59/55/63/500_F_159556388_c789nxJi54oxoJxnXJFtBsZLJclJ3CFW.jpg"));
+        myArreyRegion.add(new Region("Europe",contreyEurope.size(),"https://image.freepik.com/free-vector/colorful-map-europe_23-2147807669.jpg"));
+        myArreyRegion.add(new Region("Oceania",contreyOceania.size(),"https://images.assetsdelivery.com/compings_v2/noche/noche1702/noche170200043.jpg"));
+        myArreyRegion.add(new Region("Polar",contreyAntartica.size(),"https://image.shutterstock.com/image-vector/antarctica-map-260nw-521073739.jpg"));
+        myArreyRegion.add(new Region("Isolated islands",Isolatedislands.size(),"https://media.istockphoto.com/vectors/marshall-islands-map-black-outline-with-shadow-on-white-background-vector-id1127289481"));
 
     }
 
@@ -102,9 +109,15 @@ public class ActivityAllContreys extends AppCompatActivity implements FragmentsR
                 case "Europe":
                     contreyEurope.add(contry);
                     break;
+                case "Oceania":
+                    contreyOceania.add(contry);
+                    break;
+                case "Polar":
+                    contreyAntartica.add(contry);
+                    break;
 
                 default:
-                    otherContrey.add(contry);
+                   Isolatedislands.add(contry);
             }
 
         }
@@ -139,9 +152,16 @@ public class ActivityAllContreys extends AppCompatActivity implements FragmentsR
             case "Europe":
                 fragmentListContrey(contreyEurope);
                 break;
-            case "Other":
-                fragmentListContrey(otherContrey);
+            case "Oceania":
+                fragmentListContrey(contreyOceania);
                 break;
+            case "Polar":
+                fragmentListContrey(contreyAntartica);
+                break;
+
+            default:
+                fragmentListContrey(Isolatedislands);
+
         }
 
     }

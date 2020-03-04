@@ -6,15 +6,18 @@ import android.os.Parcelable;
 public class Region implements Parcelable {
     private String name;
     private int some;
+    private String url;
 
-    public Region(String name, int some) {
+    public Region(String name, int some, String url) {
         this.name = name;
         this.some = some;
+        this.url = url;
     }
 
     protected Region(Parcel in) {
         name = in.readString();
         some = in.readInt();
+        url = in.readString();
     }
 
     public static final Creator<Region> CREATOR = new Creator<Region>() {
@@ -28,6 +31,14 @@ public class Region implements Parcelable {
             return new Region[size];
         }
     };
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public String getName() {
         return name;
@@ -45,6 +56,7 @@ public class Region implements Parcelable {
         this.some = some;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -54,6 +66,7 @@ public class Region implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(name);
         dest.writeInt(some);
+        dest.writeString(url);
     }
 }
 

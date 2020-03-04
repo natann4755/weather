@@ -3,6 +3,7 @@ package com.example.weather.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.weather.Fragments.FragmentsRegion;
 import com.example.weather.R;
 import com.example.weather.modul.Region;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -51,18 +53,22 @@ public class regionAdapter extends RecyclerView.Adapter<regionAdapter.RHolder> {
 
     public class RHolder extends RecyclerView.ViewHolder{
         private TextView contreyName;
+        private ImageView imegRegion;
         private TextView somContrey;
 
         public RHolder(View itemView) {
             super(itemView);
             contreyName = itemView.findViewById(R.id.IC_contreyName_TV);
             somContrey = itemView.findViewById(R.id.IC_totalCaontrey_TV);
+            imegRegion = itemView.findViewById(R.id.ringIV);
+
         }
 
         public void setData (Region region){
 
             contreyName.setText(region.getName());
             somContrey.setText(String.valueOf(region.getSome()));
+            Picasso.get().load(region.getUrl()).into(imegRegion);
         }
     }
     public interface OnAdapterclickListener {

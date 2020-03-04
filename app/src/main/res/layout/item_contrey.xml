@@ -1,47 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="119dp"
-    >
-
-    <TextView
-        android:id="@+id/IContrey_contreyName_TV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="contrey"
-        android:textStyle="bold"
-        android:textSize="43sp"
-        android:layout_gravity="center"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"/>
-
-
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_height="117dp"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/IContrey_ring_TV"
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+        <ImageView
+            android:id="@+id/contryImegIV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ring"
-            android:textSize="20sp"
-            />
+            android:src="@drawable/ic_flag_black_24dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/IContrey_contreyName_TV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:gravity="center"
+                android:text="contrey"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="7dp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/IContrey_contrey_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorPrimary"/>
-
-
+        android:background="@color/colorPrimary" />
 </LinearLayout>
