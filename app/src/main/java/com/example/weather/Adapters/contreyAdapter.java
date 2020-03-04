@@ -21,10 +21,13 @@ public class contreyAdapter extends RecyclerView.Adapter<contreyAdapter.contreyH
 
     private ArrayList<Contry> AllContrey;
     private FragmentActivity mfragmentActivity;
+    private countryClickLisener mCountryClickLisener;
 
-    public contreyAdapter(ArrayList<Contry> AllContrey, FragmentActivity activity) {
+    public contreyAdapter(ArrayList<Contry> AllContrey, FragmentActivity activity, countryClickLisener mcountryClickLisener) {
         this.AllContrey = AllContrey;
         this.mfragmentActivity = activity;
+        mCountryClickLisener = mcountryClickLisener;
+
     }
 
     @NonNull
@@ -35,8 +38,15 @@ public class contreyAdapter extends RecyclerView.Adapter<contreyAdapter.contreyH
     }
 
     @Override
-    public void onBindViewHolder(@NonNull contreyHolder holder, int position) {
+    public void onBindViewHolder(@NonNull contreyHolder holder, final int position) {
         holder.setData(AllContrey.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCountryClickLisener.countryClick(AllContrey.get(position));
+            }
+        });
+
 
     }
 
@@ -67,4 +77,7 @@ public class contreyAdapter extends RecyclerView.Adapter<contreyAdapter.contreyH
                     .load(contry.getFlag(), imegFlag);
         }
     }
+   public interface countryClickLisener{
+        void countryClick (Contry myContry);
+   }
 }

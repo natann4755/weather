@@ -28,7 +28,7 @@ import java.util.List;
  * Use the {@link FragmentContreys#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentContreys extends Fragment {
+public class FragmentContreys extends Fragment implements contreyAdapter.countryClickLisener {
 
     private ArrayList<Contry> Contreys;
     private OnFragmentContreysListener mListener;
@@ -75,7 +75,7 @@ public class FragmentContreys extends Fragment {
     private void initRV(View v) {
         mRecyclerView = v.findViewById(R.id.AM_RecyclerView_contrey_RV);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mContreyAdapter = new contreyAdapter(Contreys,getActivity());
+        mContreyAdapter = new contreyAdapter(Contreys,getActivity(),this);
         mRecyclerView.setAdapter(mContreyAdapter);
 
     }
@@ -104,6 +104,11 @@ public class FragmentContreys extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void countryClick(Contry myContry) {
+        mListener.onContreyClick(myContry);
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -117,5 +122,6 @@ public class FragmentContreys extends Fragment {
     public interface OnFragmentContreysListener {
         // TODO: Update argument type and name
         void onFragmentContreys();
+        void onContreyClick(Contry contry);
     }
 }

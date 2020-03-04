@@ -179,4 +179,9 @@ public class ActivityAllContreys extends AppCompatActivity implements FragmentsR
     public void onFragmentContreys() {
 
     }
+
+    @Override
+    public void onContreyClick(Contry contry) {
+        Contry c = contry;
+    }
 }

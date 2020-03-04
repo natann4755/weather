@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class Contry implements Parcelable {
+public class Contry implements Parcelable{
 
     @SerializedName("name")
     private String name;
@@ -21,6 +21,10 @@ public class Contry implements Parcelable {
     @SerializedName("flag")
     private String flag;
 
+    private boolean favorite = false;
+
+
+
     public Contry(String name, String region, List<Double> latlng, String flag) {
         this.name = name;
         this.region = region;
@@ -33,6 +37,7 @@ public class Contry implements Parcelable {
         region = in.readString();
         flag = in.readString();
     }
+
 
     public static final Creator<Contry> CREATOR = new Creator<Contry>() {
         @Override
@@ -78,6 +83,14 @@ public class Contry implements Parcelable {
         this.flag = flag;
     }
 
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -88,5 +101,6 @@ public class Contry implements Parcelable {
         dest.writeString(name);
         dest.writeString(region);
         dest.writeString(flag);
+        dest.writeByte((byte) (favorite ? 1 : 0));
     }
 }
