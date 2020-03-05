@@ -3,6 +3,7 @@ package com.example.weather.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.weather.Fragments.FragmentContreys;
@@ -34,6 +35,8 @@ public class ActivityAllContreys extends AppCompatActivity implements FragmentsR
     private ArrayList<Contry> contreyOceania=new ArrayList<>();
     private ArrayList<Contry> contreyAntartica=new ArrayList<>();
     private ArrayList<Contry> Isolatedislands=new ArrayList<>();
+
+    public final static String keycontrey = "keycontrey";
 
 
 
@@ -182,6 +185,13 @@ public class ActivityAllContreys extends AppCompatActivity implements FragmentsR
 
     @Override
     public void onContreyClick(Contry contry) {
-        Contry c = contry;
+
+        Intent myIntent = new Intent(ActivityAllContreys.this, MapsActivity.class);
+        ArrayList Latlng = (ArrayList) contry.getLatlng();
+     myIntent.putParcelableArrayListExtra(keycontrey,Latlng);
+        startActivity(myIntent);
+
+
+
     }
 }

@@ -15,5 +15,8 @@ public interface ApiInterpafe {
 
     @GET("v2/")
     Call<Contry[]> getAllContry();
+//
+//    @GET()
+//    Call<Contry[]> getWether();
 
 }

@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Contry implements Parcelable{
@@ -67,7 +68,7 @@ public class Contry implements Parcelable{
         this.region = region;
     }
 
-    public List<Double> getLatlng() {
+    public List  getLatlng() {
         return latlng;
     }
 
