@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
     public static final String BASE_URL = "https://restcountries.eu/rest/";
-    public static final String BASE_URL2 = "https://restcountries.eu/rest/";
+    public static final String BASE_URL2 = "https://api.openweathermap.org/data/2.5/";
 
     private static Retrofit retrofit1 = null;
     private static Retrofit retrofit2 = null;
@@ -20,7 +20,7 @@ public class ApiClient {
 
     public static Retrofit getClient2 () {
         if (retrofit2==null){
-            retrofit2 = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+            retrofit2 = new Retrofit.Builder().baseUrl(BASE_URL2).addConverterFactory(GsonConverterFactory.create()).build();
         }
         return retrofit2;
     }

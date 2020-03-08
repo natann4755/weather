@@ -2,27 +2,30 @@ package com.example.weather.Activity;
 
 import androidx.fragment.app.FragmentActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.weather.R;
-import com.example.weather.modul.Contry;
+import com.example.weather.Retrofit.ApiClient;
+import com.example.weather.Retrofit.ApiInterpafe;
+import com.example.weather.modulWwather.Responsee;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ArrayList  mContry;
+    public static final String apikeyWeather = "2278f04dd5ede897f90362371419d187";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,12 +64,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onMapClick(LatLng latLng) {
                 Toast.makeText(getApplicationContext(),String.valueOf(latLng.latitude+"   "+latLng.longitude),
                         Toast.LENGTH_LONG).show();
+                getWeather(latLng.latitude,latLng.longitude);
             }
         });
 
 
 //        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+    }
+
+    private void getWeather(Double latitude, Double longitude) {
+        ApiInterpafe mApiInterpafe = ApiClient.getClient2().create(ApiInterpafe.class);
+        Call <Responsee> call = mApiInterpafe.getWetherPointsTest(apikeyWeather);
+        call.enqueue(new Callback<Responsee>() {
+            @Override
+            public void onResponse(Call<Responsee> call, Response<Responsee> response) {
+               int a =8;
+            }
+
+            @Override
+            public void onFailure(Call<Responsee> call, Throwable t) {
+
+            }
+        });
 
     }
 }
