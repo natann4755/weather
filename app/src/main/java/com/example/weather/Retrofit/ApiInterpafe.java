@@ -27,4 +27,9 @@ public interface ApiInterpafe {
     @GET("weather?lat=33.11797813522838&lon=65.36028753966093")
     Call<Responsee> getWetherPointsTest(@Query("appid") String apiKey);
 
+    @GET("weather?appid=2278f04dd5ede897f90362371419d187")
+    Call<Responsee> getWetherPointsTest2(@Query("lat") Double lat,@Query("lon") Double lon);
+
+
+
 }
