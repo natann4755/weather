@@ -6,6 +6,11 @@ import androidx.fragment.app.FragmentActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.weather.R;
@@ -18,6 +23,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
@@ -31,16 +37,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList  mContry;
     public static final String apikeyWeather = "2278f04dd5ede897f90362371419d187";
 
+    private LinearLayout linearLayout;
+    private TextView degrees;
+    private ImageView icon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        initVeiwResolt();
 
         mContry =  getIntent().getParcelableArrayListExtra(ActivityAllContreys.keycontrey);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    }
+
+    private void initVeiwResolt() {
+        linearLayout = findViewById(R.id.rezolt_weather_LL);
+        degrees = findViewById(R.id.weather_temp_TV);
+        icon = findViewById(R.id.weather_icon_IV);
     }
 
 
@@ -60,22 +78,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Double one = (Double) mContry.get(0);
         Double to = (Double) mContry.get(1);
-        LatLng sydney = new LatLng(one,to);
-        mMap.setMinZoomPreference(8f);
+        LatLng Contrey = new LatLng(one,to);
+        mMap.setMinZoomPreference(7f);
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                Toast.makeText(getApplicationContext(),String.valueOf(latLng.latitude+"   "+latLng.longitude),
-                        Toast.LENGTH_LONG).show();
+                setMap(3f);
+//                Toast.makeText(getApplicationContext(),String.valueOf(latLng.latitude+"   "+latLng.longitude),
+//                        Toast.LENGTH_LONG).show();
                 getWeather(latLng.latitude,latLng.longitude);
             }
         });
 
 
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//        mMap.addMarker(new MarkerOptions().position(Contrey));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(Contrey));
 
+    }
+
+    private void setMap(float flo) {
+        linearLayout.setWeightSum(10f);
+        LinearLayout.LayoutParams lParams = (LinearLayout.LayoutParams) linearLayout.getLayoutParams();
+        lParams.weight = flo;
+        linearLayout.setLayoutParams(lParams);
+        mMap.setMinZoomPreference(6f);
     }
 
     private void getWeather(Double latitude, Double longitude) {
@@ -84,27 +111,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         call.enqueue(new Callback<Responsee>() {
             @Override
             public void onResponse(Call<Responsee> call, Response<Responsee> response) {
-                Toast.makeText(getApplicationContext(),String.valueOf(response.body().getMain().getTemp()+" "+response.body().getWeather().get(0).getDescription()),
-                        Toast.LENGTH_LONG).show();
-
-//                AlertDialog.Builder builder1 = new AlertDialog.Builder(getBaseContext());
-//                builder1.setMessage("Write your message here.");
-//                builder1.setCancelable(true);
-//
-//                AlertDialog alert11 = builder1.create();
-//                alert11.show();
+//                Toast.makeText(getApplicationContext(),String.valueOf(response.body().getMain().getTemp()+" "+response.body().getWeather().get(0).getDescription()),
+//                        Toast.LENGTH_LONG).show();
 
 
-                new AlertDialog.Builder(getBaseContext())
-                .setTitle("Alert")
-                .setMessage("Alert message to be shown").create().show();
-//                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-//                        new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                dialog.dismiss();
-//                            }
-//                        });
-//                alertDialog.show();
+
             }
 
             @Override
@@ -113,5 +124,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        setMap(0f);
     }
 }
