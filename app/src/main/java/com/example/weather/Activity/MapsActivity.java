@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ahmadrosid.svgloader.SvgLoader;
 import com.example.weather.R;
 import com.example.weather.Retrofit.ApiClient;
 import com.example.weather.Retrofit.ApiInterpafe;
@@ -24,7 +25,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -40,6 +43,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LinearLayout linearLayout;
     private TextView degrees;
     private ImageView icon;
+    private TextView situation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +63,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         linearLayout = findViewById(R.id.rezolt_weather_LL);
         degrees = findViewById(R.id.weather_temp_TV);
         icon = findViewById(R.id.weather_icon_IV);
+        situation = findViewById(R.id.weather_situation_TV);
     }
 
 
@@ -113,6 +118,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onResponse(Call<Responsee> call, Response<Responsee> response) {
 //                Toast.makeText(getApplicationContext(),String.valueOf(response.body().getMain().getTemp()+" "+response.body().getWeather().get(0).getDescription()),
 //                        Toast.LENGTH_LONG).show();
+                setData(response.body());
 
 
 
@@ -124,6 +130,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+    }
+
+    private void setData(Responsee body) {
+        Double degre = (body.getMain().getTemp()-273.15);
+        DecimalFormat numberFormat = new DecimalFormat("#.0");
+        String sDegre = numberFormat.format(degre);
+        degrees.setText(sDegre);
+        String urll = "http://openweathermap.org/img/w/" +body.getWeather().get(0).getIcon()+".png";
+        Picasso.get().load(urll).into(icon);
+//        SvgLoader.pluck()
+//                .with(this)
+//                .load(urll, icon);
+
+        situation.setText(body.getWeather().get(0).getDescription());
     }
 
     @Override

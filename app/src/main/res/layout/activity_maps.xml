@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.MapsActivity">
+    tools:context=".Activity.MapsActivity"
+    android:background="@color/colorMapDegreed">
 
 
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -45,8 +46,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <View
@@ -57,7 +57,6 @@
                     android:id="@+id/weather_temp_TV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="35"
                     android:textStyle="bold"
                     android:textSize="40sp"
                     android:layout_centerHorizontal="true"
@@ -72,14 +71,21 @@
                     android:layout_centerHorizontal="true"
                     />
 
-                <ImageView
-                    android:id="@+id/weather_icon_IV"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="8dp"/>
-
-
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/weather_icon_IV"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_margin="8dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/weather_situation_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:layout_gravity="center"/>
 
 
 
@@ -90,6 +96,8 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
+
+
 
 
 
