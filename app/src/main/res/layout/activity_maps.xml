@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Activity.MapsActivity"
-    android:background="@color/colorMapDegreed">
+    >
 
 
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -47,11 +47,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
-                <View
-                    android:layout_width="15dp"
-                    android:layout_height="match_parent"></View>
+<!--                <View-->
+<!--                    android:layout_width="15dp"-->
+<!--                    android:layout_height="match_parent"></View>-->
 
                 <TextView
                     android:id="@+id/weather_temp_TV"
@@ -66,8 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="°"
-                    android:textStyle="bold"
-                    android:textSize="40sp"
+                    android:textSize="60sp"
                     android:layout_centerHorizontal="true"
                     />
 
@@ -75,16 +75,18 @@
 
             <ImageView
                 android:id="@+id/weather_icon_IV"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:layout_margin="8dp"
-                android:layout_gravity="center"/>
+                android:layout_width="95dp"
+                android:layout_height="85dp"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                />
 
             <TextView
                 android:id="@+id/weather_situation_TV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
+                android:textSize="24sp"
+                android:textStyle="bold"
                 android:layout_gravity="center"/>
 
 
@@ -94,8 +96,30 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="1.1"
             android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/weather_minTemp_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/weather_maxTemp_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/weather_humidity_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/weather_humidity_TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
 
 
 

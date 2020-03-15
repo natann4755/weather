@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ahmadrosid.svgloader.SvgLoader;
+
 import com.example.weather.R;
 import com.example.weather.Retrofit.ApiClient;
 import com.example.weather.Retrofit.ApiInterpafe;
@@ -24,12 +26,15 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
+
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Protocol;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -137,12 +142,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DecimalFormat numberFormat = new DecimalFormat("#.0");
         String sDegre = numberFormat.format(degre);
         degrees.setText(sDegre);
-        String urll = "http://openweathermap.org/img/w/" +body.getWeather().get(0).getIcon()+".png";
-        Picasso.get().load(urll).into(icon);
-//        SvgLoader.pluck()
-//                .with(this)
-//                .load(urll, icon);
+        String urll = "https://openweathermap.org/img/w/" +body.getWeather().get(0).getIcon()+".png";
 
+
+        Picasso.get().load(urll).into(icon);
+
+//        Picasso.get().load("http://openweathermap.org/img/w/04d.png").into(icon);
         situation.setText(body.getWeather().get(0).getDescription());
     }
 
