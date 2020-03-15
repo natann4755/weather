@@ -46,7 +46,7 @@ public class moreDetailseFragment extends Fragment {
     public static moreDetailseFragment newInstance(Responsee responsee) {
         moreDetailseFragment fragment = new moreDetailseFragment();
         Bundle args = new Bundle();
-        args.putParcelable(keyallResponsee, responsee);
+//        args.putParcelable(keyallResponsee, responsee);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,7 +55,7 @@ public class moreDetailseFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            allResponsee = getArguments().getParcelable(keyallResponsee);
+//            allResponsee = getArguments().getParcelable(keyallResponsee);
 
         }
     }

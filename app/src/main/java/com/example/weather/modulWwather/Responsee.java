@@ -48,18 +48,7 @@ public class Responsee  {
 	@SerializedName("wind")
 	private Wind wind;
 
-	protected Responsee(Parcel in) {
-		visibility = in.readInt();
-		timezone = in.readInt();
-		sys = in.readParcelable(Sys.class.getClassLoader());
-		dt = in.readInt();
-		weather = in.createTypedArrayList(WeatherItem.CREATOR);
-		name = in.readString();
-		cod = in.readInt();
-		id = in.readInt();
-		base = in.readString();
-		wind = in.readParcelable(Wind.class.getClassLoader());
-	}
+
 
 
 

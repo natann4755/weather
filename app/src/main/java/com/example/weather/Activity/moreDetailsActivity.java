@@ -16,6 +16,6 @@ public class moreDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_details);
 
-        allResponsee = getIntent().getExtras().getParcelable(MapsActivity.keyRecponce);
+//        allResponsee = getIntent().getExtras().getParcelable(MapsActivity.keyRecponce);
     }
 }
