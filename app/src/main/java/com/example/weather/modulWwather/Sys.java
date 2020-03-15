@@ -1,10 +1,13 @@
 package com.example.weather.modulWwather;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 
-public class Sys{
+public class Sys implements Parcelable {
 
 	@SerializedName("country")
 	private String country;
@@ -23,6 +26,27 @@ public class Sys{
 
 	@SerializedName("message")
 	private double message;
+
+	protected Sys(Parcel in) {
+		country = in.readString();
+		sunrise = in.readInt();
+		sunset = in.readInt();
+		id = in.readInt();
+		type = in.readInt();
+		message = in.readDouble();
+	}
+
+	public static final Creator<Sys> CREATOR = new Creator<Sys>() {
+		@Override
+		public Sys createFromParcel(Parcel in) {
+			return new Sys(in);
+		}
+
+		@Override
+		public Sys[] newArray(int size) {
+			return new Sys[size];
+		}
+	};
 
 	public void setCountry(String country){
 		this.country = country;
@@ -84,4 +108,19 @@ public class Sys{
 			",message = '" + message + '\'' + 
 			"}";
 		}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(country);
+		dest.writeInt(sunrise);
+		dest.writeInt(sunset);
+		dest.writeInt(id);
+		dest.writeInt(type);
+		dest.writeDouble(message);
+	}
 }

@@ -1,10 +1,13 @@
 package com.example.weather.modulWwather;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Responsee{
+public class Responsee  {
 
 	@SerializedName("visibility")
 	private int visibility;
@@ -44,6 +47,21 @@ public class Responsee{
 
 	@SerializedName("wind")
 	private Wind wind;
+
+	protected Responsee(Parcel in) {
+		visibility = in.readInt();
+		timezone = in.readInt();
+		sys = in.readParcelable(Sys.class.getClassLoader());
+		dt = in.readInt();
+		weather = in.createTypedArrayList(WeatherItem.CREATOR);
+		name = in.readString();
+		cod = in.readInt();
+		id = in.readInt();
+		base = in.readString();
+		wind = in.readParcelable(Wind.class.getClassLoader());
+	}
+
+
 
 	public void setVisibility(int visibility){
 		this.visibility = visibility;
@@ -168,4 +186,5 @@ public class Responsee{
 			",wind = '" + wind + '\'' + 
 			"}";
 		}
+
 }

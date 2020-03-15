@@ -1,16 +1,20 @@
 package com.example.weather.modulWwather;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 
-public class Coord{
+public class Coord  {
 
 	@SerializedName("lon")
 	private double lon;
 
 	@SerializedName("lat")
 	private double lat;
+
 
 	public void setLon(double lon){
 		this.lon = lon;
@@ -36,4 +40,5 @@ public class Coord{
 			",lat = '" + lat + '\'' + 
 			"}";
 		}
+
 }

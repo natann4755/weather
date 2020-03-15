@@ -2,7 +2,10 @@ package com.example.weather.Activity;
 
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,12 +34,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private ArrayList  mContry;
     public static final String apikeyWeather = "2278f04dd5ede897f90362371419d187";
+    public static final String keyRecponce = "keyRecponce";
 
     private LinearLayout linearLayout;
     private TextView degrees;
     private ImageView icon;
     private TextView situation;
     private TextView fildLIke;
+    private Button moreInfo;
+    private Responsee allResponsee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +64,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         icon = findViewById(R.id.weather_icon_IV);
         situation = findViewById(R.id.weather_situation_TV);
         fildLIke = findViewById(R.id.weather_fildLike_TV);
+
     }
 
 
@@ -112,7 +119,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onResponse(Call<Responsee> call, Response<Responsee> response) {
 //                Toast.makeText(getApplicationContext(),String.valueOf(response.body().getMain().getTemp()+" "+response.body().getWeather().get(0).getDescription()),
 //                        Toast.LENGTH_LONG).show();
-                setData(response.body());
+                allResponsee = response.body();
+                setData();
 
 
 
@@ -126,12 +134,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    private void setData(Responsee body) {
-        degrees.setText(fixDegrees(body.getMain().getTemp()));
-        fildLIke.setText(fixDegrees(body.getMain().getFeelsLike()));
-        String urll = "https://openweathermap.org/img/w/" +body.getWeather().get(0).getIcon()+".png";
+    private void setData() {
+        degrees.setText(fixDegrees(allResponsee.getMain().getTemp()));
+        fildLIke.setText(fixDegrees(allResponsee.getMain().getFeelsLike()));
+        String urll = "https://openweathermap.org/img/w/" +allResponsee.getWeather().get(0).getIcon()+".png";
         Picasso.get().load(urll).into(icon);
-        situation.setText(body.getWeather().get(0).getDescription());
+        situation.setText(allResponsee.getWeather().get(0).getDescription());
+        moreInfo = findViewById(R.id.weather_moredetails_B);
+        moreInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(),moreDetailsActivity.class);
+                intent.putExtra(keyRecponce,allResponsee);
+                startActivity(intent);
+            }
+        });
     }
 
     private String fixDegrees(Double degre) {

@@ -1,10 +1,13 @@
 package com.example.weather.modulWwather;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 
-public class Main{
+public class Main  {
 
 	@SerializedName("temp")
 	private double temp;
@@ -23,6 +26,8 @@ public class Main{
 
 	@SerializedName("temp_max")
 	private double tempMax;
+
+
 
 	public void setTemp(double temp){
 		this.temp = temp;
@@ -84,4 +89,5 @@ public class Main{
 			",temp_max = '" + tempMax + '\'' + 
 			"}";
 		}
+
 }

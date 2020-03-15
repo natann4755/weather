@@ -1,13 +1,17 @@
 package com.example.weather.modulWwather;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 
-public class Clouds{
+public class Clouds {
 
 	@SerializedName("all")
 	private int all;
+
 
 	public void setAll(int all){
 		this.all = all;
@@ -24,4 +28,6 @@ public class Clouds{
 			"all = '" + all + '\'' + 
 			"}";
 		}
+
+
 }
