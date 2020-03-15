@@ -1,25 +1,15 @@
 package com.example.weather.Activity;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentActivity;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.ahmadrosid.svgloader.SvgLoader;
 
 import com.example.weather.R;
 import com.example.weather.Retrofit.ApiClient;
 import com.example.weather.Retrofit.ApiInterpafe;
-import com.example.weather.modulWwather.Main;
 import com.example.weather.modulWwather.Responsee;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -31,10 +21,7 @@ import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 
-import okhttp3.OkHttpClient;
-import okhttp3.Protocol;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -49,6 +36,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private TextView degrees;
     private ImageView icon;
     private TextView situation;
+    private TextView fildLIke;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         degrees = findViewById(R.id.weather_temp_TV);
         icon = findViewById(R.id.weather_icon_IV);
         situation = findViewById(R.id.weather_situation_TV);
+        fildLIke = findViewById(R.id.weather_fildLike_TV);
     }
 
 
@@ -138,17 +127,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private void setData(Responsee body) {
-        Double degre = (body.getMain().getTemp()-273.15);
-        DecimalFormat numberFormat = new DecimalFormat("#.0");
-        String sDegre = numberFormat.format(degre);
-        degrees.setText(sDegre);
+        degrees.setText(fixDegrees(body.getMain().getTemp()));
+        fildLIke.setText(fixDegrees(body.getMain().getFeelsLike()));
         String urll = "https://openweathermap.org/img/w/" +body.getWeather().get(0).getIcon()+".png";
-
-
         Picasso.get().load(urll).into(icon);
-
-//        Picasso.get().load("http://openweathermap.org/img/w/04d.png").into(icon);
         situation.setText(body.getWeather().get(0).getDescription());
+    }
+
+    private String fixDegrees(Double degre) {
+        Double ceDegre = degre -273.15;
+        DecimalFormat numberFormat = new DecimalFormat("#.0");
+         return numberFormat.format(ceDegre);
     }
 
     @Override

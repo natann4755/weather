@@ -4,8 +4,22 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+public class Responsee{
 
-public class Responsee {
+	@SerializedName("visibility")
+	private int visibility;
+
+	@SerializedName("timezone")
+	private int timezone;
+
+	@SerializedName("main")
+	private Main main;
+
+	@SerializedName("clouds")
+	private Clouds clouds;
+
+	@SerializedName("sys")
+	private Sys sys;
 
 	@SerializedName("dt")
 	private int dt;
@@ -22,20 +36,54 @@ public class Responsee {
 	@SerializedName("cod")
 	private int cod;
 
-	@SerializedName("main")
-	private Main main;
-
-
 	@SerializedName("id")
 	private int id;
-
-
 
 	@SerializedName("base")
 	private String base;
 
 	@SerializedName("wind")
 	private Wind wind;
+
+	public void setVisibility(int visibility){
+		this.visibility = visibility;
+	}
+
+	public int getVisibility(){
+		return visibility;
+	}
+
+	public void setTimezone(int timezone){
+		this.timezone = timezone;
+	}
+
+	public int getTimezone(){
+		return timezone;
+	}
+
+	public void setMain(Main main){
+		this.main = main;
+	}
+
+	public Main getMain(){
+		return main;
+	}
+
+	public void setClouds(Clouds clouds){
+		this.clouds = clouds;
+	}
+
+	public Clouds getClouds(){
+		return clouds;
+	}
+
+	public void setSys(Sys sys){
+		this.sys = sys;
+	}
+
+	public Sys getSys(){
+		return sys;
+	}
 
 	public void setDt(int dt){
 		this.dt = dt;
@@ -77,15 +125,6 @@ public class Responsee {
 		return cod;
 	}
 
-	public void setMain(Main main){
-		this.main = main;
-	}
-
-	public Main getMain(){
-		return main;
-	}
-
-
 	public void setId(int id){
 		this.id = id;
 	}
@@ -93,7 +132,6 @@ public class Responsee {
 	public int getId(){
 		return id;
 	}
-
 
 	public void setBase(String base){
 		this.base = base;
@@ -114,14 +152,18 @@ public class Responsee {
 	@Override
  	public String toString(){
 		return 
-			"Responsee{" +
-			"dt = '" + dt + '\'' + 
+			"Responsee{" + 
+			"visibility = '" + visibility + '\'' + 
+			",timezone = '" + timezone + '\'' + 
+			",main = '" + main + '\'' + 
+			",clouds = '" + clouds + '\'' + 
+			",sys = '" + sys + '\'' + 
+			",dt = '" + dt + '\'' + 
 			",coord = '" + coord + '\'' + 
 			",weather = '" + weather + '\'' + 
 			",name = '" + name + '\'' + 
 			",cod = '" + cod + '\'' + 
-			",main = '" + main + '\'' +
-			",id = '" + id + '\'' +
+			",id = '" + id + '\'' + 
 			",base = '" + base + '\'' + 
 			",wind = '" + wind + '\'' + 
 			"}";

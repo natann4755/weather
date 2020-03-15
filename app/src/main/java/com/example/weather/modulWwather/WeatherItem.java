@@ -1,8 +1,13 @@
 package com.example.weather.modulWwather;
 
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class WeatherItem{
+
+public class WeatherItem implements Parcelable {
 
 	@SerializedName("icon")
 	private String icon;
@@ -15,6 +20,25 @@ public class WeatherItem{
 
 	@SerializedName("id")
 	private int id;
+
+	protected WeatherItem(Parcel in) {
+		icon = in.readString();
+		description = in.readString();
+		main = in.readString();
+		id = in.readInt();
+	}
+
+	public static final Creator<WeatherItem> CREATOR = new Creator<WeatherItem>() {
+		@Override
+		public WeatherItem createFromParcel(Parcel in) {
+			return new WeatherItem(in);
+		}
+
+		@Override
+		public WeatherItem[] newArray(int size) {
+			return new WeatherItem[size];
+		}
+	};
 
 	public void setIcon(String icon){
 		this.icon = icon;
@@ -58,4 +82,17 @@ public class WeatherItem{
 			",id = '" + id + '\'' + 
 			"}";
 		}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(icon);
+		dest.writeString(description);
+		dest.writeString(main);
+		dest.writeInt(id);
+	}
 }
