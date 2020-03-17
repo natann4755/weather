@@ -79,7 +79,7 @@ public class FragmentsRegion extends Fragment implements regionAdapter.OnAdapter
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_fragments_all_contrey, container, false);
+        View v = inflater.inflate(R.layout.fragment_fragments_regin, container, false);
         initRecyclerview(v);
         return v;
     }

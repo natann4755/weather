@@ -105,3 +105,4 @@ public class Contry implements Parcelable{
         dest.writeByte((byte) (favorite ? 1 : 0));
     }
 }
+//43.000000, -75.000000

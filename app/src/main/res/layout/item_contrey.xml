@@ -58,24 +58,24 @@
                     android:layout_height="wrap_content"
                     android:textSize="20sp" />
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content">-->
 
 
-                <Button
-                    android:id="@+id/contreyAddFavorite_B"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="add favorite"
-                    android:background="@drawable/ricicel_rectangel"/>
-                <Button
-                    android:id="@+id/contreyRemoovFavorite_B"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="remove favorite"
-                    android:visibility="gone"/>
-                </RelativeLayout>
+<!--                <Button-->
+<!--                    android:id="@+id/contreyAddFavorite_B"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="add favorite"-->
+<!--                    android:background="@drawable/ricicel_rectangel"/>-->
+<!--                <Button-->
+<!--                    android:id="@+id/contreyRemoovFavorite_B"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="remove favorite"-->
+<!--                    android:visibility="gone"/>-->
+<!--                </RelativeLayout>-->
             </LinearLayout>
 
 

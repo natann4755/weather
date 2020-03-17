@@ -3,6 +3,8 @@ package com.example.weather.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,14 +19,16 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class contreyAdapter extends RecyclerView.Adapter<contreyAdapter.contreyHolder> {
+public class contreyAdapter extends RecyclerView.Adapter<contreyAdapter.contreyHolder> implements Filterable {
 
     private ArrayList<Contry> AllContrey;
+    private ArrayList<Contry> filterContrey = new ArrayList<>();
     private FragmentActivity mfragmentActivity;
     private countryClickLisener mCountryClickLisener;
 
     public contreyAdapter(ArrayList<Contry> AllContrey, FragmentActivity activity, countryClickLisener mcountryClickLisener) {
         this.AllContrey = AllContrey;
+        filterContrey.addAll(this.AllContrey);
         this.mfragmentActivity = activity;
         mCountryClickLisener = mcountryClickLisener;
 
@@ -39,11 +43,11 @@ public class contreyAdapter extends RecyclerView.Adapter<contreyAdapter.contreyH
 
     @Override
     public void onBindViewHolder(@NonNull contreyHolder holder, final int position) {
-        holder.setData(AllContrey.get(position));
+        holder.setData(filterContrey.get(position));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mCountryClickLisener.countryClick(AllContrey.get(position));
+                mCountryClickLisener.countryClick(filterContrey.get(position));
             }
         });
 
@@ -52,7 +56,35 @@ public class contreyAdapter extends RecyclerView.Adapter<contreyAdapter.contreyH
 
     @Override
     public int getItemCount() {
-        return AllContrey.size();
+        return filterContrey.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                FilterResults results = new FilterResults();
+                ArrayList <Contry> arreyMyContrey = new ArrayList<>();
+                for (Contry c : AllContrey) {
+                    if (c.getName().toLowerCase().contains(constraint.toString().toLowerCase())){
+                        arreyMyContrey.add(c);
+                    }
+                }
+              results.values = arreyMyContrey;
+              results.count = arreyMyContrey.size();
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                if (constraint ==null || constraint.length()==0){ return; }
+                filterContrey.clear();
+                filterContrey = (ArrayList<Contry>) results.values;
+                notifyDataSetChanged();
+
+            }
+        };
     }
 
     public class contreyHolder extends RecyclerView.ViewHolder {

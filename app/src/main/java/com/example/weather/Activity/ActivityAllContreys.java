@@ -107,6 +107,9 @@ public class ActivityAllContreys extends AppCompatActivity implements FragmentsR
                     contreyAsia.add(contry);
                     break;
                 case "Americas":
+                    if (contry.getName().equals("United States Minor Outlying Islands")){
+                        fixLatLngUsa(contry);
+                    }
                     contreyAmericas.add(contry);
                     break;
                 case "Europe":
@@ -127,9 +130,14 @@ public class ActivityAllContreys extends AppCompatActivity implements FragmentsR
 
     }
 
+    private void fixLatLngUsa(Contry contry) {
+        List<Double> useLatLng = new ArrayList<>();
+        useLatLng.add(39.381266);
+        useLatLng.add(-97.922211);
+        contry.setLatlng(useLatLng);
 
 
-
+    }
 
 
     @Override

@@ -85,7 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Double one = (Double) mContry.get(0);
         Double to = (Double) mContry.get(1);
         LatLng Contrey = new LatLng(one,to);
-        mMap.setMinZoomPreference(7f);
+        mMap.setMinZoomPreference(6f);
 
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override

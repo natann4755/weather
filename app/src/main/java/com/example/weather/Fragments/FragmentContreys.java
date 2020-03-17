@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.example.weather.Adapters.contreyAdapter;
 import com.example.weather.Adapters.regionAdapter;
@@ -35,6 +36,7 @@ public class FragmentContreys extends Fragment implements contreyAdapter.country
     private static final String keyAreeyContreys = "keyAreeyContreys";
     private RecyclerView mRecyclerView;
     private contreyAdapter mContreyAdapter;
+    private SearchView countreySearchView;
 
     public FragmentContreys() {
         // Required empty public constructor
@@ -77,6 +79,19 @@ public class FragmentContreys extends Fragment implements contreyAdapter.country
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mContreyAdapter = new contreyAdapter(Contreys,getActivity(),this);
         mRecyclerView.setAdapter(mContreyAdapter);
+        countreySearchView = v.findViewById(R.id.countrey_SearchView_SV);
+        countreySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mContreyAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
 
     }
 
